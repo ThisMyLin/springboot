@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaozhai.Mapper.GoodsMapper">
+
+    <!-- goods表的映射 -->
+    <resultMap id="goods" type="com.xiaozhai.Pojo.Goods">
+        <id column="goods_id" property="goodsId" jdbcType="INTEGER" />
+        <result column="app_price0" property="appPrice0" jdbcType="DECIMAL" />
+        <result column="app_price1" property="appPrice1" jdbcType="DECIMAL" />
+        <result column="app_price2" property="appPrice2" jdbcType="DECIMAL" />
+        <result column="app_usable" property="appUsable" jdbcType="INTEGER" />
+        <result column="color_id" property="colorId" jdbcType="INTEGER" />
+        <result column="common_id" property="commonId" jdbcType="INTEGER" />
+        <result column="goods_full_specs" property="goodsFullSpecs" jdbcType="VARCHAR" />
+        <result column="goods_price0" property="goodsPrice0" jdbcType="DECIMAL" />
+        <result column="goods_price1" property="goodsPrice1" jdbcType="DECIMAL" />
+        <result column="goods_price2" property="goodsPrice2" jdbcType="DECIMAL" />
+        <result column="goods_serial" property="goodsSerial" jdbcType="VARCHAR" />
+        <result column="goods_specs" property="goodsSpecs" jdbcType="VARCHAR" />
+        <result column="zq_pdt_desc" property="zqPdtDesc" jdbcType="VARCHAR" />
+        <result column="goods_storage" property="goodsStorage" jdbcType="INTEGER" />
+        <result column="image_name" property="imageName" jdbcType="VARCHAR" />
+        <result column="promotion_end_time" property="promotionEndTime" jdbcType="TIMESTAMP" />
+        <result column="promotion_id" property="promotionId" jdbcType="INTEGER" />
+        <result column="promotion_start_time" property="promotionStartTime" jdbcType="TIMESTAMP" />
+        <result column="promotion_state" property="promotionState" jdbcType="INTEGER" />
+        <result column="promotion_title" property="promotionTitle" jdbcType="VARCHAR" />
+        <result column="promotion_type" property="promotionType" jdbcType="INTEGER" />
+        <result column="spec_value_ids" property="specValueIds" jdbcType="VARCHAR" />
+        <result column="web_price0" property="webPrice0" jdbcType="DECIMAL" />
+        <result column="web_price1" property="webPrice1" jdbcType="DECIMAL" />
+        <result column="web_price2" property="webPrice2" jdbcType="DECIMAL" />
+        <result column="web_usable" property="webUsable" jdbcType="INTEGER" />
+        <result column="wechat_price0" property="wechatPrice0" jdbcType="DECIMAL" />
+        <result column="wechat_price1" property="wechatPrice1" jdbcType="DECIMAL" />
+        <result column="wechat_price2" property="wechatPrice2" jdbcType="DECIMAL" />
+        <result column="wechat_usable" property="wechatUsable" jdbcType="INTEGER" />
+        <result column="group_price" property="groupPrice" jdbcType="DECIMAL" />
+        <result column="is_gift" property="isGift" jdbcType="INTEGER" />
+        <result column="is_push" property="isPush" jdbcType="BIT" />
+        <result column="goods_full_specs_m" property="goodsFullSpecsM" jdbcType="VARCHAR" />
+        <result column="goods_full_specs_e" property="goodsFullSpecsE" jdbcType="VARCHAR" />
+        <result column="goods_specs_m" property="goodsSpecsM" jdbcType="VARCHAR" />
+        <result column="goods_specs_e" property="goodsSpecsE" jdbcType="VARCHAR" />
+        <result column="is_taobao_goods" property="isTaobaoGoods" jdbcType="INTEGER" />
+        <result column="taobao_price" property="taobaoPrice" jdbcType="DECIMAL" />
+        <result column="is_taobao_price_change" property="isTaobaoPriceChange" jdbcType="INTEGER" />
+        <result column="distributCommission" property="distributcommission" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="goods">
+        SELECT * FROM goods g WHERE g.goods_id = #{goodsId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM goods g WHERE g.goods_id = #{goodsId}
+    </delete>
+
+    <insert id="insertGoods" parameterType="com.xiaozhai.Pojo.Goods">
+        INSERT INTO goods(app_price0, app_price1,
+                              app_price2, app_usable, color_id,
+                              common_id, goods_full_specs, goods_price0,
+                              goods_price1, goods_price2, goods_serial,
+                              goods_specs, zq_pdt_desc, goods_storage,
+                              image_name, promotion_end_time, promotion_id,
+                              promotion_start_time, promotion_state, promotion_title,
+                              promotion_type, spec_value_ids, web_price0,
+                              web_price1, web_price2, web_usable,
+                              wechat_price0, wechat_price1, wechat_price2,
+                              wechat_usable, group_price, is_gift,
+                              is_push, goods_full_specs_m, goods_full_specs_e,
+                              goods_specs_m, goods_specs_e, is_taobao_goods,
+                              taobao_price, is_taobao_price_change, distributCommission)
+        VALUES(#{appPrice0}, #{appPrice1},
+                  #{appPrice2}, #{appUsable}, #{colorId},
+                  #{commonId}, #{goodsFullSpecs}, #{goodsPrice0},
+                  #{goodsPrice1}, #{goodsPrice2}, #{goodsSerial},
+                  #{goodsSpecs}, #{zqPdtDesc}, #{goodsStorage},
+                  #{imageName}, #{promotionEndTime}, #{promotionId},
+                  #{promotionStartTime}, #{promotionState}, #{promotionTitle},
+                  #{promotionType}, #{specValueIds}, #{webPrice0},
+                  #{webPrice1}, #{webPrice2}, #{webUsable},
+                  #{wechatPrice0}, #{wechatPrice1}, #{wechatPrice2},
+                  #{wechatUsable}, #{groupPrice}, #{isGift},
+                  #{isPush}, #{goodsFullSpecsM}, #{goodsFullSpecsE},
+                  #{goodsSpecsM}, #{goodsSpecsE}, #{isTaobaoGoods},
+                  #{taobaoPrice}, #{isTaobaoPriceChange}, #{distributcommission})
+    </insert>
+
+    <update id="updateGoods" parameterType="com.xiaozhai.Pojo.Goods">
+        UPDATE goods SET app_price0 = #{appPrice0},
+                          app_price1 = #{appPrice1},
+                          app_price2 = #{appPrice2},
+                          app_usable = #{appUsable},
+                          color_id = #{colorId},
+                          common_id = #{commonId},
+                          goods_full_specs = #{goodsFullSpecs},
+                          goods_price0 = #{goodsPrice0},
+                          goods_price1 = #{goodsPrice1},
+                          goods_price2 = #{goodsPrice2},
+                          goods_serial = #{goodsSerial},
+                          goods_specs = #{goodsSpecs},
+                          zq_pdt_desc = #{zqPdtDesc},
+                          goods_storage = #{goodsStorage},
+                          image_name = #{imageName},
+                          promotion_end_time = #{promotionEndTime},
+                          promotion_id = #{promotionId},
+                          promotion_start_time = #{promotionStartTime},
+                          promotion_state = #{promotionState},
+                          promotion_title = #{promotionTitle},
+                          promotion_type = #{promotionType},
+                          spec_value_ids = #{specValueIds},
+                          web_price0 = #{webPrice0},
+                          web_price1 = #{webPrice1},
+                          web_price2 = #{webPrice2},
+                          web_usable = #{webUsable},
+                          wechat_price0 = #{wechatPrice0},
+                          wechat_price1 = #{wechatPrice1},
+                          wechat_price2 = #{wechatPrice2},
+                          wechat_usable = #{wechatUsable},
+                          group_price = #{groupPrice},
+                          is_gift = #{isGift},
+                          is_push = #{isPush},
+                          goods_full_specs_m = #{goodsFullSpecsM},
+                          goods_full_specs_e = #{goodsFullSpecsE},
+                          goods_specs_m = #{goodsSpecsM},
+                          goods_specs_e = #{goodsSpecsE},
+                          is_taobao_goods = #{isTaobaoGoods},
+                          taobao_price = #{taobaoPrice},
+                          is_taobao_price_change = #{isTaobaoPriceChange},
+                          distributCommission = #{distributcommission}
+        WHERE goods_id = #{goodsId}
+    </update>
+</mapper>
