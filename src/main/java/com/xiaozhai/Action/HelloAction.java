@@ -21,7 +21,7 @@ public class HelloAction {
     private RedisHelper redisHelper;
 
     @RequestMapping(value = "/query")
-    public String query(@RequestParam(value = "goodsId",required = true,defaultValue = "24817") Integer goodsId) throws SQLException {
+    public String query(@RequestParam(value = "goodsId",required = true,defaultValue = "24817") Integer goodsId) throws Exception {
         String checkGoodsJson = redisHelper.get(goodsId+"");
         if(checkGoodsJson==null || "".equals(checkGoodsJson)){
             Goods goods = goodsService.selectByPrimaryKey(goodsId);

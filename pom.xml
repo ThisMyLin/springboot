@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- 使用log4j日志首先需要将spring-boot里面的logging日志依赖给剔除 -->
+			<!-- 使用log4j2日志首先需要将spring-boot里面的logging日志依赖给剔除 -->
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>

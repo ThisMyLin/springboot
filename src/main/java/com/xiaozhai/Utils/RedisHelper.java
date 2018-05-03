@@ -19,20 +19,15 @@ public class RedisHelper {
      * @param key
      * @return
      */
-    public String get(String key) {
+    public String get(String key) throws Exception {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        try {
             return jedis.get(key);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
+        }finally {
             jedisPool.returnResourceObject(jedis);
         }
     }
@@ -47,16 +42,11 @@ public class RedisHelper {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        try {
             return jedis.keys(prefix);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
+        }finally {
             jedisPool.returnResourceObject(jedis);
         }
     }
@@ -72,14 +62,10 @@ public class RedisHelper {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
             jedis.set(key, value);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             jedisPool.returnResourceObject(jedis);
         }
     }
@@ -95,15 +81,11 @@ public class RedisHelper {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
             jedis.set(key, value);
             jedis.expire(key, expire);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             jedisPool.returnResourceObject(jedis);
         }
     }
@@ -117,14 +99,10 @@ public class RedisHelper {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
             jedis.del(key);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             jedisPool.returnResourceObject(jedis);
         }
     }
