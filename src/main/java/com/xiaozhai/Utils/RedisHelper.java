@@ -1,5 +1,7 @@
 package com.xiaozhai.Utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
@@ -13,6 +15,8 @@ public class RedisHelper {
     @Autowired
     private JedisPool jedisPool;
 
+    private static Logger logger = LoggerFactory.getLogger(RedisHelper.class);
+
     /**
      * 根据key获取缓存数据
      *
@@ -25,10 +29,13 @@ public class RedisHelper {
             jedis = jedisPool.getResource();
             return jedis.get(key);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("连接redis失败，jedis："+jedis);
+            logger.error(e.getMessage());
             return null;
         }finally {
-            jedisPool.returnResourceObject(jedis);
+            if(jedis != null){
+                jedis.close();
+            }
         }
     }
 
@@ -44,10 +51,13 @@ public class RedisHelper {
             jedis = jedisPool.getResource();
             return jedis.keys(prefix);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("连接redis失败，jedis："+jedis);
+            logger.error(e.getMessage());
             return null;
         }finally {
-            jedisPool.returnResourceObject(jedis);
+            if(jedis != null){
+                jedis.close();
+            }
         }
     }
 
@@ -64,9 +74,12 @@ public class RedisHelper {
             jedis = jedisPool.getResource();
             jedis.set(key, value);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("连接redis失败，jedis："+jedis);
+            logger.error(e.getMessage());
         }finally {
-            jedisPool.returnResourceObject(jedis);
+            if(jedis != null){
+                jedis.close();
+            }
         }
     }
 
@@ -84,9 +97,12 @@ public class RedisHelper {
             jedis.set(key, value);
             jedis.expire(key, expire);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("连接redis失败，jedis："+jedis);
+            logger.error(e.getMessage());
         }finally {
-            jedisPool.returnResourceObject(jedis);
+            if(jedis != null){
+                jedis.close();
+            }
         }
     }
 
@@ -101,9 +117,12 @@ public class RedisHelper {
             jedis = jedisPool.getResource();
             jedis.del(key);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("连接redis失败，jedis："+jedis);
+            logger.error(e.getMessage());
         }finally {
-            jedisPool.returnResourceObject(jedis);
+            if(jedis != null){
+                jedis.close();
+            }
         }
     }
 

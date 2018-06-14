@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaozhai.Mapper.CategoryMapper" >
+
+  <resultMap id="BaseResultMap" type="com.xiaozhai.Pojo.Category" >
+    <id column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="app_image" property="appImage" jdbcType="VARCHAR" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="category_sort" property="categorySort" jdbcType="INTEGER" />
+    <result column="deep" property="deep" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="is_push" property="isPush" jdbcType="BIT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    category_id, app_image, category_name, category_sort, deep, parent_id, is_push
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where category_id = #{categoryId}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from category
+    where category_id = #{categoryId}
+  </delete>
+
+  <insert id="insert" parameterType="com.xiaozhai.Pojo.Category" >
+    insert into category (category_id, app_image, category_name, 
+      category_sort, deep, parent_id, 
+      category_name_mian, category_name_english, 
+      is_push)
+    values (#{categoryId}, #{appImage}, #{categoryName},
+      #{categorySort}, #{deep}, #{parentId},
+      #{categoryNameMian}, #{categoryNameEnglish},
+      #{isPush})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.xiaozhai.Pojo.Category" >
+    update category
+    set app_image = #{appImage},
+      category_name = #{categoryName},
+      category_sort = #{categorySort},
+      deep = #{deep},
+      parent_id = #{parentId},
+      category_name_mian = #{categoryNameMian},
+      category_name_english = #{categoryNameEnglish},
+      is_push = #{isPush}
+    where category_id = #{categoryId}
+  </update>
+
+</mapper>
