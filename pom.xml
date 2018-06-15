@@ -107,6 +107,13 @@
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-pool</artifactId>
 		</dependency>
+
+		<!-- SpringBoot分布式事务依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jta-atomikos</artifactId>
+			<version>1.5.12.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 </project>

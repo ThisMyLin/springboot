@@ -30,12 +30,10 @@
 
   <insert id="insert" parameterType="com.xiaozhai.Pojo.Category" >
     insert into category (category_id, app_image, category_name, 
-      category_sort, deep, parent_id, 
-      category_name_mian, category_name_english, 
+      category_sort, deep, parent_id,
       is_push)
     values (#{categoryId}, #{appImage}, #{categoryName},
       #{categorySort}, #{deep}, #{parentId},
-      #{categoryNameMian}, #{categoryNameEnglish},
       #{isPush})
   </insert>
 

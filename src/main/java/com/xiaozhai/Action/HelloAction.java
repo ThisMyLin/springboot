@@ -41,12 +41,20 @@ public class HelloAction {
     @RequestMapping(value = "hello.do")
     public String hello(){
         //jmsProducer.send("springboot","hello");
-        Category category1 = category2Service.selectByPrimaryKey(1240);
-        Category category = categoryService.selectByPrimaryKey(1240);
-        String categoryJson = JSONObject.toJSONString(category);
-        String categoryJson1 = JSONObject.toJSONString(category1);
-        logger.info("1.103："+categoryJson);
-        logger.info("10.128："+categoryJson1);
+//        Category category1 = category2Service.selectByPrimaryKey(1240);
+//        Category category = categoryService.selectByPrimaryKey(1240);
+//        String categoryJson = JSONObject.toJSONString(category);
+//        String categoryJson1 = JSONObject.toJSONString(category1);
+//        logger.info("1.103："+categoryJson);
+//        logger.info("10.128："+categoryJson1);
+        Category category01 = new Category();
+        category01.setAppImage("");
+        category01.setCategoryName("test1");
+        category01.setCategorySort(1);
+        category01.setDeep(1);
+        category01.setIsPush(true);
+        category01.setParentId(1);
+        categoryService.insert(category01);
         return "index";
     }
 
